@@ -1,7 +1,6 @@
- import React, { Component } from 'react';
+ /*import React, { Component } from 'react';
  import logo from './logo.svg';
  import './App.css';
- import Demo from './Demo';
 
  class App extends Component {
    render() {
@@ -14,13 +13,25 @@
          <p className="App-intro">
           Hello World !!
          </p>
-        
-          <Demo/>
-          <Demo/>
        </div>
-      
      );
    }
  }
 
- export default App;
+ export default App;*/
+
+ import React, {Component} from 'react';
+
+class Demo extends Component{
+render()
+{
+  return (
+      <ul>
+          <li>one</li>
+          <li>one</li>
+          <li>one</li>
+       </ul>    
+ );
+}
+}
+export default Demo;
