@@ -4,6 +4,7 @@ import React, {component} from 'react';
 class OrderList extends component{
 render(){
 return (
+       
 <ol>
         <li> Semester 1 </li>
         <li> Semester 2 </li>
@@ -15,9 +16,6 @@ return (
         <li> Semester 8</li>
  </ol>
 );
-
 }
-
 }
-
 export default OrderList;

@@ -1,7 +1,6 @@
  
-
- import React, {Component} from 'react';
-
+import React, {Component} from 'react';
+import OrderList from './OrderList';
 class Demo extends Component{
 render()
 {
@@ -10,7 +9,9 @@ render()
           <li>one</li>
           <li>one</li>
           <li>one</li>
+       <OrderList/>
        </ul>    
+       
  );
 }
 }
