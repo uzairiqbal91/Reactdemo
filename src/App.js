@@ -1,14 +1,19 @@
  import React, { Component } from 'react';
 //import newClass from './newClass';
  import Demo from './Demo';
- //import OrderList from './OrderList';
+ import Table from './Table';
+ import OrderList from './OrderList';
+ import Un_Order_List from './un_Order_List';
  class App extends Component {
    render() {
      return (
-       //<h1>pakr</h1>
+       <div>
        <Demo/>
-       //<newClass/>
-      // <OrderList/>
+       {/*<OrderList/>*/}
+       {/*<Table/>*/}
+       {/*<Un_Order_List/>*/}
+       </div>
+
      );
    }
  }

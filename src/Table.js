@@ -1,6 +1,6 @@
-import React, {component} from 'react';
+import React, {Component} from 'react';
 
-class Table extends component{
+class Table extends Component{
 render()
 {
  return (
