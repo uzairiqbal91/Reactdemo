@@ -64,38 +64,44 @@ class Demo extends Component
 {
    constructor(){
                 super();
+                var temp=JSON.parse(localStorage.getItem("item"));
                 this.state={
-                arr :["Wake Up at 6 am","take shower and dressed up","take break fast at 7","leave for office at 7:15","send E-mail For Job :) because i am job less"],
-                inputText:''    
+                arr : temp ==null? [] : temp,
+                inputText:'',
+                temp1:''
                            }
                 }
  databaseData(){
+
       this.todo =  this.state.arr;
-      localStorage.setItem("item",this.todo);
+      localStorage.setItem("item",JSON.stringify(this.todo));
   }
-  retriveData(){
+  /*retriveData(){
       
-      this.todo = localStorage.getItem("item");
-      var arr =  new Array();
-      arr = this.todo.split(',');
-    //   for (a in arr ) {
-    //     arr[a] = parseInt(temp[a], 10); // Explicitly include base as per Álvaro's comment
-    //  }
-    //   console.log("todo>>",arr);
-
+        //     this.todo = localStorage.getItem("item");
+        //     console.log("Before",this.todo);
+        // this.todo=JSON.parse(this.todo);
+        //         console.log("affer",this.todo);
+        //         for (var i=0 ;i<this.todo.length;i++){
+        //                console.log("\n",this.todo[i]);
+        //               }
+     this.state.temp1=localStorage.getItem("item");
+     this.state.temp1=JSON.parse(this.state.temp1);
+     this.setState({
+         arr:this.state.temp1
+     })
       return(
-
-        this.state.arr.map((item, index) => {
+                this.state.arr.map((item, index) => {
                 return <li key={index} >
                      {item}  <button onClick={this.deleteEntry.bind(this,index)}> delete</button>
                      
                 </li>
             })
       )
-      
-  }
+    }*/
   getlist(){
         return (
+            
             this.state.arr.map((item, index) => {
                 return <li key={index} >
                      {item}  <button onClick={this.deleteEntry.bind(this,index)}> delete</button>
@@ -105,33 +111,41 @@ class Demo extends Component
             )
         )
     }
+     setLocalStorage(){    
+         localStorage.setItem("item",JSON.stringify(this.state.arr))}
   inputChange(changeValue){        
             this.setState(
 			{inputText:changeValue.target.value});
     }
-    addValue()
+    addValue(event)
     {
-        this.state.arr.push(this.state.inputText);
+    
+         this.state.arr.push(this.state.inputText);
+         this.setLocalStorage();
         //databaseData();
         this.setState({
         arr:this.state.arr,
-       inputText:""
-
+      inputText:''
+     
         })
-       
+        event.preventDefault();
+        
+        // this.retriveData()
     }
     deleteEntry(index){
-       this.state.arr.splice(index,1)
-  
-  this.setState({
-   arr:this.state.arr
+       this.state.arr.splice(index,1);
+      this.setLocalStorage() ;
+        this.setState({
+        arr:this.state.arr
 
   })
 
     }
-  
+ 
   deleteall(){
       this.state.arr.splice(0,5)
+      this.setLocalStorage()
+      
 this.setState({
   arr:this.state.arr
 
@@ -142,14 +156,18 @@ this.setState({
     render(){
     return(
      <div>
-    <input type="text" value={this.state.inputText} onChange={this.inputChange.bind(this)}/>
-    <button onClick={this.addValue.bind(this)} >Add </button>
+   
      <ul>
-         {this.retriveData()}
+         <form onSubmit={this.addValue.bind(this)}>
+              <input type="text" value={this.state.inputText} onChange={this.inputChange.bind(this)}/>
+               <button onClick={this.addValue.bind(this)} >Add </button></form>
+
+         {this.getlist()}
         
      </ul>
      <button onClick={this.deleteall.bind(this)}> Delete All</button>
-     <button onClick={this.databaseData()} >database </button>
+     
+     
      </div>
     );
 }
